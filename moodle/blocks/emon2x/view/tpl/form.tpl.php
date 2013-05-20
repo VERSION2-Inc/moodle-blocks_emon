@@ -218,6 +218,10 @@ function windowclose() {
 	</div>
 </div>
 <script type="text/javascript">
+		$(window).unload(function(){
+			window.opener.location.reload(false);
+		});
+		
 		if (!$('textarea[name="intro"]').val()) {
 			$('textarea[name="intro"]').val('<p></p>');
 		}
@@ -241,8 +245,8 @@ function windowclose() {
 			force_br_newlines : true,
 			force_p_newlines : false,
 			accessibility_focus : false,
-		    preformatted : true,
-		    remove_linebreaks : true			
+			preformatted : true,
+			remove_linebreaks : true
 		});
 	</script>
 </body>
