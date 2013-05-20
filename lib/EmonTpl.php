@@ -19,10 +19,7 @@ class EmonTpl {
 		$dir = realpath(dirname( __FILE__));
 		require($dir.'/../view/tpl/'.$filename . '.tpl.php');
 	}
-
-	//TODO:gとpのマージ
-	//TODO:エラー制御演算子はなくするべきである。
-
+	
 	// echo variable from parameter
 	function p($key, $key2 = null) {
 		$value = '';
@@ -44,6 +41,7 @@ class EmonTpl {
 		}
 		return $value;
 	}
+	
 	// get variable from parameter
 	function a($key, $key2 = null) {
 		$value = '';
