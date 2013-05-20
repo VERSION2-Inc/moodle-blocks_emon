@@ -1,0 +1,612 @@
+@charset "utf-8";
+/* ===================================================================
+CSS information
+ style info :リセット及びbody初期設定 (このCSSは通常変更しない)
+=================================================================== */
+/* reset */
+html {
+	overflow-y: scroll;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+	margin: 0;
+	padding: 0;
+}
+
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-style: normal;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+
+}
+	table td {
+		vertical-align: top;
+		border: solid 1px #eeeeee;
+		border-bottom: solid 1px #cccccc;
+		padding: 2px 4px;
+	}
+caption,th {
+	text-align: left;
+}
+q:before,q:after {
+	content: '';
+}
+object,
+embed {
+	vertical-align: top;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%;
+}
+img,abbr,acronym,fieldset {
+	border: 0;
+}
+li {
+	list-style-type: none;
+}
+img{
+	vertical-align:bottom;
+}
+hr{
+	clear:both;
+	border:none;
+	background-color:#FFFFFF;
+}
+
+
+/* default */
+body {
+	background: #fff;
+	color: #4D4D4D;
+	font-size: small;
+	font-family: verdana,Arial,Helvetica,sans-serif;
+	line-height: 1.4;
+}
+/* IE6 base font */
+* html body {
+	font-family: "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+}
+
+fieldset {
+	width: 90%;
+	padding: 10px 20px;
+	margin: 5px;
+	border: solid 1px #cccccc;
+}
+	fieldset legend {
+		color: #996633;
+		font-weight: bold;
+	}
+
+.rightmenu {
+	text-align: right;
+}
+.error {
+	color: #ff0000;
+	font-weight:bold;
+}
+.message {
+	color: #0000ff;
+}
+.gray {
+	color: #999999;
+}
+.notice {
+	color: #993300;
+}
+.caution {
+	color: #ff0000;
+	font-weight: bold;
+}
+.bold {
+	font-weight: bold;
+}
+.right {
+	text-align: right;
+}
+.page {
+}
+.pagecount {
+	float: left;
+}
+.pagelink {
+	float: left;
+}
+.csvtable {
+	width: 50%;
+	background-color: #ffffff;
+}
+
+.csvtable td {
+	border: solid 1px #cccccc;
+}
+
+.csvhelptable {
+	width: 100%;
+	background-color: #ffffff;
+}
+
+.csvhelptable td {
+	border: solid 1px #cccccc;
+}
+
+.separator {
+	color: #888888;
+	margin: 0px 3px;
+}
+.separator_quiz {
+	color: #888888;
+	margin: 0px 0px;
+}
+.handle {
+	cursor: move;
+}
+
+span.required {
+	color: #ff0000;
+	font-weight: bold;
+}
+img.loading {
+	text-align: center;
+	margin: 20px auto;
+}
+div.loading {top:0px;left:-9999px;width:150px;height:150px;position:absolute;opacity:0.5;}
+/*
+div.content_body {
+	margin-left: 50px;
+}
+*/
+div.list_body {
+	width: 98%;
+	/* margin:0 auto 0px; */
+	margin:10px 10px 10px 10px
+}
+
+.gradetable {}
+	.gradetable table {
+		border-width: 0px;
+	}
+		.gradetable table th {
+			border-width: 0px;
+			background-color: #eeeeee;
+			color: #666666;
+			font-weight: bold;
+		}
+		.gradetable table td {
+		}
+
+.result {
+	margin: 30px;
+	padding:10px;
+	background-color:#ffffff;
+	border:solid 1px #999999;
+}
+.grade_correct {
+	font-weight: bold;
+	font-size: 200%;
+	color: #0000ff;
+}
+.grade_miss {
+	font-weight: bold;
+	font-size: 120%;
+	color: #ff0000;
+}
+
+#progress {
+	letter-spacing:-3px;
+}
+	#progress .gray{
+		color: #cccccc;
+	}
+	
+.space {	/*	このspaceでフッタを止める  */
+	clear:both;
+}
+#uploader {
+	margin: 10px;
+}
+
+/* MAIN */
+#container {
+	/* position: relative; */
+	width: 100%;
+	/* min-height: 100%; */
+}
+/*
+html div#container {
+	height: 100%;
+}
+*/
+body > #container {
+	/* height: auto; */
+}
+
+#main {
+	clear: both;
+	margin: 20px 10px;/* -■■0910修正- */
+	/* -width: 95%;■■0910修正- */
+	padding-bottom: 31px;
+}
+	#main #submenu {
+		margin-bottom: 0px;
+	}
+	#main #topics {
+		clear: both;
+		width: 100%;
+	}
+		#main #topics th {
+			background: #cfcfc0;
+			vertical-align: middle;
+			text-align: center;
+			color: #ffffff;
+			width: 100px;
+			padding: 15px 10px;
+		}
+	#main #wrapper {
+	}
+		#main #wrapper .rightnavi {
+			float: right;
+			width: 350px;
+		}
+		#main #wrapper .rightmain {
+			margin-right: 360px;
+		}
+		#main #wrapper .leftnavi {
+			float: left;
+			width: 350px;
+			/*■■0910修正 */
+			border:#DBE4E3 3px solid;
+			background-color:#FFF;	
+			border-radius: 5px; 
+			-webkit-border-radius: 5px;  
+			-moz-border-radius: 5px;
+			/* behavior: url(./bin/ie-css3.htc); */
+				padding: 10px 0px 0px 3px;
+		}
+		#main #wrapper .leftmain {
+			margin-left:360px;
+			/*■■0910修正 */
+			border:#DBE4E3 3px solid;
+			background-color:#FFF;
+			border-radius: 5px; 
+			-webkit-border-radius: 5px;  
+			-moz-border-radius: 5px;
+			padding: 10px 0px 0px 2px;
+			/* behavior: url(./bin/ie-css3.htc); */
+		}
+
+/* --------------------------------------------------------
+	#wrapper
+-------------------------------------------------------- */
+#wrapper {
+	width:100%;
+	margin: 0 auto;
+	text-align: left;
+}
+
+
+		#main #wrapper .leftnavi {
+			float: left;
+			width: 350px;
+		}
+
+		#main #wrapper .leftmain {
+			margin-left:360px;
+		}
+textarea {
+	width: 95%;
+	line-height: 1.5;
+	padding: 2px;
+}
+	textarea.large {
+		width: 500px;
+		height: 250px;
+	}
+	textarea.middle {
+		width: 500px;
+		height: 100px;
+	}
+	textarea.small {
+		width: 50%;
+		height: 50px;
+	}
+	
+/* --------------------------------------------------------
+	#ここから
+-------------------------------------------------------- */
+
+
+/**
+ *  Style Sheet for glexa
+ */
+* {
+	margin: 0;
+	padding: 0;
+}
+html, body {
+	height: 100%;
+}
+
+}
+
+
+input, textarea {
+	color: #333333;
+	font-family: Verdana,Arial,Helvetica,'MS UI Gothic',sans-serif;
+	font-size: 90%;
+}
+	input.submit {
+		margin: 15px 0;
+	}
+textarea {
+	width: 95%;
+	line-height: 1.5;
+	padding: 2px;
+}
+	textarea.large {
+		width: 500px;
+		height: 250px;
+	}
+	textarea.middle {
+		width: 500px;
+		height: 100px;
+	}
+	textarea.small {
+		width: 50%;
+		height: 50px;
+	}
+img.icon {
+	vertical-align: middle;
+}
+	
+
+	a:hover {
+		color: #ff9900;
+	}
+
+table {
+	border-collapse: collapse;
+	border: solid 1px #cccccc;
+	background: #ffffff;
+	width: 100%;
+	font-size: 100%;
+}
+
+
+fieldset {
+	width: 95%;
+	padding: 10px 20px;
+	margin: 5px;
+	border: solid 1px #cccccc;
+}
+	fieldset legend {
+		color: #996633;
+		font-weight: bold;
+	}
+	fieldset table {
+		background-color:#efefe0;
+		border-width: 0px;
+	}
+		fieldset table th {
+			color: #336600;
+			font-weight: bold;
+			background-color: #efefe0;
+			border-right: solid 1px #cccccc;
+			border-bottom: solid 1px #cccccc;
+		}
+		fieldset table td {
+			border-width: 0px;
+			padding-left: 10px;
+			padding-bottom: 10px;
+		}
+
+
+img {
+	border: none;
+}
+hr {
+	height: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	border-width: 1px 0 0 0;
+	color: #cccccc;
+}
+
+/*   クラス関連   */
+.date {
+	text-align: right;
+	color: #999999;
+	font-size: 90%;
+}
+.border {
+	border: solid 1px #999999;
+	padding: 2px;
+	margin: 2px;
+}
+
+
+.rightmenu {
+	text-align: right;
+}
+.error {
+	color: #ff0000;
+}
+.message {
+	color: #0000ff;
+}
+.gray {
+	color: #999999;
+}
+.notice {
+	color: #993300;
+}
+.caution {
+	color: #ff0000;
+	font-weight: bold;
+}
+.bold {
+	font-weight: bold;
+}
+.right {
+	text-align: right;
+}
+.page {
+}
+.pagecount {
+	float: left;
+}
+.pagelink {
+	float: left;
+}
+.csvtable {
+	width: 50%;
+	background-color: #ffffff;
+}
+
+.csvtable td {
+	border: solid 1px #cccccc;
+}
+
+.csvhelptable {
+	width: 100%;
+	background-color: #ffffff;
+}
+
+.csvhelptable td {
+	border: solid 1px #cccccc;
+}
+
+.separator {
+	color: #888888;
+	margin: 0px 3px;
+}
+.handle {
+	cursor: move;
+}
+
+span.required {
+	color: #ff0000;
+	font-weight: bold;
+}
+img.loading {
+	text-align: center;
+	margin: 20px auto;
+}
+
+
+.gradetable {}
+	.gradetable table {
+		border-width: 0px;
+	}
+		.gradetable table th {
+			border-width: 0px;
+			background-color: #eeeeee;
+			color: #666666;
+			font-weight: bold;
+		}
+		.gradetable table td {
+		}
+
+.result {
+	margin: 30px;
+	padding:10px;
+	background-color:#ffffff;
+	border:solid 1px #999999;
+}
+.grade_correct {
+	font-weight: bold;
+	font-size: 200%;
+	color: #0000ff;
+}
+.grade_miss {
+	font-weight: bold;
+	font-size: 120%;
+	color: #ff0000;
+}
+
+#progress {
+	letter-spacing:-3px;
+}
+	#progress .gray{
+		color: #cccccc;
+	}
+	
+.space {	/*	このspaceでフッタを止める  */
+	clear:both;
+}
+#uploader {
+	margin: 10px;
+}
+
+
+
+
+
+		
+#main {
+	clear: both;
+	width: 95%;
+	margin: 20px;
+	padding-bottom: 31px;
+}
+	#main #submenu {
+		margin-bottom: 0px;
+	}
+	#main #topics {
+		clear: both;
+		width: 100%;
+	}
+		#main #topics th {
+			background: #cfcfc0;
+			vertical-align: middle;
+			text-align: center;
+			color: #ffffff;
+			width: 100px;
+			padding: 15px 10px;
+		}
+	#main #wrapper {
+	}
+		#main #wrapper .rightnavi {
+			float: right;
+			width: 350px;
+		}
+		#main #wrapper .rightmain {
+			margin-right: 360px;
+		}
+		#main #wrapper .leftnavi {
+			float: left;
+			width: 350px;
+		}
+		#main #wrapper .leftmain {
+			margin-left:375px;
+		}
+
+h4 {
+	font-size: 100%;
+	color: #336600;
+	font-weight: bold;
+	margin-top: 5px;
+	margin-bottom: 0px;
+
+/*■■0910修正 */
+#main #wrapper .leftnavi div#searchbox{
+	padding:10px 5px;
+}
+#main #wrapper div.leftmain div.box{
+	padding:10px 5px;
+}
+#main #wrapper div.leftmain div.box form input.submit{
+	border-radius: 3px; 
+	-webkit-border-radius: 3px;  
+	-moz-border-radius: 3px;
+	background-color:#9FA0A0;
+	border:1px solid #595757;
+	padding:2px;
+	cursor:pointer;
+	color:#FFF;
+	font-weight:bold;
+}
+
+/* */
+
