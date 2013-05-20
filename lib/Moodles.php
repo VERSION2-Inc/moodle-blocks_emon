@@ -799,12 +799,13 @@ class MoodlesManager
 		foreach ($form as $k => $v) {
 			$json['params'][$k] = $v;
 		}
-		$topic = $DB->get_record('course_sections', array('id'=>$cm->section), '*');
-		$json['params']['coursesection'] = $topic->name ? $topic->name : $topic->section;
-		
+
+		$json['params']['cmid'] = $cm->id;
+		$json['params']['section'] = $cm->section;
+		$json['params']['visible'] = $cm->visible;
+
 		return $json['params'];
 	}
-
 
 	/**
 	 * 問題カテゴリの取得

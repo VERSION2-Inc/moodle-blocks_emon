@@ -19,7 +19,7 @@ class EmonTpl {
 		$dir = realpath(dirname( __FILE__));
 		require($dir.'/../view/tpl/'.$filename . '.tpl.php');
 	}
-	
+
 	// echo variable from parameter
 	function p($key, $key2 = null) {
 		$value = '';
@@ -41,7 +41,7 @@ class EmonTpl {
 		}
 		return $value;
 	}
-	
+
 	// get variable from parameter
 	function a($key, $key2 = null) {
 		$value = '';
@@ -65,13 +65,12 @@ class EmonTpl {
 	/**
 	 * コース内のセクション情報を取得する。
 	 *
-	 * @param
+	 * @param int courseId
 	 */
 	function getSectionInfo($courseId)
 	{
 		global $CFG,$DB;
-
-		$sql = "SELECT * FROM `mdl_course_sections` WHERE course = $courseId";
+		
 		$records = $DB->get_records('course_sections', array('course'=>$courseId));
 
 		$sections = array();
@@ -112,11 +111,10 @@ class EmonTpl {
 		if (!has_capability('moodle/course:manageactivities', $context)) {
 			error('You do not have capability of this course');
 		}
-		
+
 		//$sections = $this->getSectionInfo($course->id);
-		$sections = $DB->get_records('course_sections', array('course'=>$course->id)
-				, 'section');
-		
+		$sections = $DB->get_records('course_sections', array('course'=>$course->id) , 'section');
+
 		$jsonSections = array();
 		//セクション情報の詰め込み
 		foreach ($sections as $section) {
@@ -124,7 +122,4 @@ class EmonTpl {
 		}
 		return $jsonSections;
 	}
-
-
-
 }

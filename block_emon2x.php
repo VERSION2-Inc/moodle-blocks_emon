@@ -32,7 +32,7 @@ class block_emon2x extends block_base {
         // capability check
 		if (has_capability('mod/quiz:manage', $context) || $COURSE->id == 1) {
 			$this->content->text = '<form id="glexaform" action="' . $url . 'view/form.php" method="get" target="emon2x" onsubmit="window.open(\'about:blank\', \'emon2x\', \'width=1020,height=720,resizable=yes,scrollbars=yes\')">' .
-					'<center><input type="submit" value="' . get_string('glexaedit', 'block_emon2x') . '" onclick="document.getElementById(\'glexacmid\').value="" /></center>' .
+					'<center><input type="submit" value="' . get_string('glexaedit', 'block_emon2x') . '"onclick="document.getElementById(\'glexacmid\').value="" /></center>' .
 					'<input type="hidden" name="course" value="' . $COURSE->id . '" />' .
 					'<input type="hidden" id="glexacmid" name="cmid" value="" />' .
 					'</form>';
