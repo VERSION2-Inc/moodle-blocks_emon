@@ -1,5 +1,5 @@
 <?PHP 
-$string['glexa'] = 'e-mon tsukuro version 2.x';
+$string['glexa'] = 'e-mon tsukuro version 2.3';
 $string['glexaedit'] = 'Create a e-mon tsukuro Quiz';
 $string['glexapath'] = 'Server Path';
 
