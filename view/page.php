@@ -26,6 +26,7 @@ $params = null;
 $params['action'] = optional_param('action', '', PARAM_TEXT);
 $params['page_number'] = optional_param('page_number', 1, PARAM_INT);
 $params['cmid'] = optional_param('cmid', 0, PARAM_INT);
+$params['section'] = optional_param('section', 0, PARAM_INT);
 $params['user'] = $USER;
 require_login();
 

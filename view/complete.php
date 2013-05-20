@@ -27,6 +27,8 @@ $params['user'] = $USER;
 $cmid = optional_param('cmid', 0, PARAM_INT);
 require_login();
 
+error_log("complete!");
+
 // クイズデータの取得
 $params['module'] = $moodles->getMoodleQuiz($cmid);
 

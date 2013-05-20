@@ -26,6 +26,7 @@ function getMoodleCourseOptions(courseid) {
 
 	//$('select[name="section"]').attr('disabled', 'disabled');
 	// セクションの取得
+	
 	$.ajax({
 		type : 'get',
 		url : 'api.php',
@@ -41,6 +42,7 @@ function getMoodleCourseOptions(courseid) {
 			loading(true);
 		}
 	});
+	
 }
 
 /**
@@ -53,7 +55,7 @@ function setMoodleSections(result) {
 		$('select[name="section"]').append(
 				$('<option value="' + count + '">' + (count++) + '</option>'));
 	}
-	//$('select[name="section"]').attr('disabled', '');
+	$('select[name="section"]').attr('enabled', '');
 }
 
 // 問題作成時のファイル一覧

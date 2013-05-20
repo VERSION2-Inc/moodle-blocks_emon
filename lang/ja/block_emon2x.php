@@ -1,16 +1,13 @@
 <?PHP 
-
 $string['block_emon2x'] = "e問つく郎2.x版";
 
-$string['glexa'] = 'e問つく朗2.3';
+$string['glexa'] = 'e問つく朗2.x';
 $string['glexaedit'] = 'e問つく朗クイズ作成';
 $string['glexapath'] = 'サーバー相対パス';
 
-$string['emon'] = 'e問つく朗2.3';
+$string['emon'] = 'e問つく朗2.x';
 $string['emonedit'] = 'e問つく朗クイズ作成';
 $string['emonpath'] = 'サーバー相対パス';
-
-$string['pluginname'] = "e問つく郎2.3版";
 
 $string['completesetting'] = 'パスを保存しました。';
 $string['copyright'] = '&copy; 2013 広島修道大学, VERSION2';

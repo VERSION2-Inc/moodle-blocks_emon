@@ -65,26 +65,6 @@ class EmonTpl {
 	}
 
 	/**
-	 * コース内のセクション情報を取得する。
-	 *
-	 * @param
-	 */
-	function getSectionInfo($courseId)
-	{
-		global $CFG,$DB;
-
-		$sql = "SELECT * FROM `mdl_course_sections` WHERE course = $courseId";
-		$records = $DB->get_records('course_sections', array('course'=>$courseId));
-
-		$sections = array();
-		foreach($records as $row){
-			array_push($sections,$row->name);
-		}
-
-		return $sections;
-	}
-
-	/**
 	 * セクション一覧の取得
 	 *
 	 * @param	int $courseId
@@ -93,7 +73,7 @@ class EmonTpl {
 	function getMoodleCourseSections($courseId)
 	{
 		global $CFG, $DB;
-			
+
 		// library
 		include_once($CFG->dirroot . '/course/lib.php');
 
@@ -114,19 +94,28 @@ class EmonTpl {
 		if (!has_capability('moodle/course:manageactivities', $context)) {
 			error('You do not have capability of this course');
 		}
-		
-		//$sections = $this->getSectionInfo($course->id);
-		$sections = $DB->get_records('course_sections', array('course'=>$course->id)
-				, 'section');
+
+		// get course sections
+		$sections = get_fast_modinfo($course->id)->get_section_info_all();
 		
 		$jsonSections = array();
+
 		//セクション情報の詰め込み
-		foreach ($sections as $section) {
-			$jsonSections[] = $section->name ? $section->name : $section->section;
+		foreach ($sections as $number => $section) {
+			if(isset($section->name)){
+				//セクション名がセットされていれば
+				$jsonSections[$number] = $section->name;
+			}else{
+				//セクション名をセットしていない場合は、セクション番号を詰める
+				$jsonSections[$number] = $section->section;
+			}
 		}
+		ksort($jsonSections);
+		unset($jsonSections[0]);
+		
+		error_log(print_r($jsonSections,true));
+			
 		return $jsonSections;
 	}
-
-
 
 }

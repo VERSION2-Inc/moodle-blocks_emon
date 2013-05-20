@@ -26,6 +26,7 @@ $params['cmid'] = optional_param('cmid',0,PARAM_INT);
 $params['action'] = optional_param('action', '', PARAM_TEXT);
 $params['course_id'] = optional_param('course', 0, PARAM_INT);
 $params['user'] = $USER;
+
 $site = get_site();
 $systemcontext = context_system::instance();
 require_login();
@@ -38,9 +39,7 @@ if ($params['action'] == 'save') {
 	} else {
 		$quiz = new StdClass();
 	}
-	
 	require_once dirname(__FILE__).'/../api/set_quiz.php';
-		
 	header('Location: page.php?cmid='.$cm->id);
 }
 
@@ -88,8 +87,6 @@ if ($params['cmid']) {
 	// デフォルト
 	$quiz = array();
 	
-	//$cm = get_coursemodule_from_instance('quiz', $params['course_id']);
-		
 	$params['visible'] = 1;
 	$params['attemptonlast'] = 1;
 	$params['is_correct'] = 1;

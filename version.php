@@ -18,7 +18,7 @@
  * Version details
  *
  * @package    block
- * @subpackage emon2.3.x
+ * @subpackage emon2x
  * @copyright  Hiroshima Shudo Univ. & VERSION2 Inc. <info@ver2.jp>
  * 
  * @copyright  1999 onwards Martin Dougiamas (http://dougiamas.com)
@@ -27,6 +27,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2013051723;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2012062505;        // Requires this Moodle version
+$plugin->version   = 2013051404;        // The current plugin version (Date: YYYYMMDDXX)
+
+//Moodle2.3.6対応させる場合のバージョン番号
+//$plugin->version   = 2012062506;        // The current plugin version (Date: YYYYMMDDXX)
+
+$plugin->requires  = 2012062506;        // Requires this Moodle version
 $plugin->component = 'block_emon2x';  // Full name of the plugin (used for diagnostics)

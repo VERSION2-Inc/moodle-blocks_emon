@@ -1,8 +1,11 @@
-<?PHP //$Id: block_participants.php,v 1.33.2.2 2008/03/03 11:41:03 moodler Exp $
-
+<?PHP 
 class block_emon2x extends block_base {
     function init() {
         $this->title = get_string('emon', 'block_emon2x');
+        //2013年5月13日,03版リリース
+        //TODO: リリース日に差し替えること。
+        //(Moodle対象バージョン)(年)(月)(日)(リリース回)
+        $this->version = 2013051404;
     }
 
     function instance_allow_multiple() {
@@ -31,7 +34,7 @@ class block_emon2x extends block_base {
         // capability check
 		if (has_capability('mod/quiz:manage', $context) || $COURSE->id == 1) {
 			$this->content->text = '<form id="glexaform" action="' . $url . 'view/form.php" method="get" target="emon2x" onsubmit="window.open(\'about:blank\', \'emon2x\', \'width=1020,height=720,resizable=yes,scrollbars=yes\')">' .
-					'<center><input type="submit" value="' . get_string('glexaedit', 'block_emon2x') . '"onclick="document.getElementById(\'glexacmid\').value=\'\' /></center>' .
+					'<center><input type="submit" value="' . get_string('glexaedit', 'block_emon2x') . '" onclick="document.getElementById(\'glexacmid\')" value=""/></center>' .
 					'<input type="hidden" name="course" value="' . $COURSE->id . '" />' .
 					'<input type="hidden" id="glexacmid" name="cmid" value="" />' .
 					'</form>';

@@ -68,17 +68,22 @@ function windowclose() {
 							<dd>
 								<?php if ($this->g('section') && $this->g('cmid')) { ?>
 								<h3>
-									<?php echo $this->p('coursesection') ?>
+									<?php echo $this->p('section') ?>
 								</h3>
 								<?php } else { ?>
-								<select name="section">
-									<?php 
-									$sections = $this->getMoodleCourseSections($courseId);
-									foreach($sections as $key => $section){
-										echo "<option value='$key'>$section</option>";
-									}
-									?>
-								</select>
+
+								<?php 
+								echo "<select name='section'>";
+								//セクション情報を取得
+								$sections = array();
+//								$sections = $this->g('section_list');
+								$sections = $this->getMoodleCourseSections($courseId);
+
+								foreach($sections as $key => $section){
+									echo "<option value='$key'>$section</option>";
+								}
+								echo "</select>";
+								?>
 								<?php } ?>
 							</dd>
 						</dl>
@@ -226,6 +231,7 @@ function windowclose() {
 			mode : "exact",
 			elements: 'intro',
 			theme : "advanced",
+			content_css : "resources/css/glexa.css",
 			convert_urls : 0,
 			theme_advanced_buttons1 : "fontsizeselect,bold,italic,underline,forecolor,|,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,|,charmap,table,|,undo,redo,link,unlink,|,cleanup,iespell,fullscreen,code",
 			theme_advanced_buttons2 : "",

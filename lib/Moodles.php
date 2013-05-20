@@ -269,7 +269,7 @@ class MoodlesManager
 
 		// error check
 		if (empty($courseId)) {
-			error('Must specify course id, short name or idnumber');
+			error('Must specify course id, short name or idnumber(couse_idが脱落している可能性があります。)');
 		}
 		if (!($course = $DB->get_record('course', array('id' => $courseId), '*', MUST_EXIST)) ) {
 			error('Invalid course id');
@@ -287,12 +287,15 @@ class MoodlesManager
 			
 		// get course sections
 		$sections = get_fast_modinfo($course->id)->get_section_info_all();
+				
 		$jsonSections = array();
 		foreach ($sections as $number => $section) {
 			$jsonSections[$section->section] = $section->id;
 		}
 		ksort($jsonSections);
 		unset($jsonSections[0]);
+		
+		error_log(print_r($jsonSections,true));
 			
 		return $jsonSections;
 	}
@@ -351,7 +354,7 @@ class MoodlesManager
 
 		// error check
 		if (! $course = $DB->get_record("course", array("id" => $quiz->course))) {
-			error("This course doesn't exist:getMoodleQuestions");
+			error("This course doesn't exist");
 		}
 
 		// capability check
@@ -621,7 +624,7 @@ class MoodlesManager
 					'format' => 1,
 					'itemid' => $post['itemid']
 			);
-
+			
 			$key = 0;
 			$question->subquestions = $post['subquestions'];
 			//subquestionだけ、[$key]['text']にしないといけない。
@@ -632,10 +635,10 @@ class MoodlesManager
 				$question->subquestions[$key]['format'] = 1;
 				$key++;
 			}
-
+			
 			$question->subanswers = $post['subanswers'];
 			$question->shuffleanswers = $post['shuffleanswers'];
-
+			
 		}
 
 		// feedbacks
@@ -670,10 +673,10 @@ class MoodlesManager
 		// save questions
 		//PHP関数のcloneではなく、Moodleで用意されているfullclone関数を使う。
 		$form = fullclone($question);
-
+		
 		$qtypeobj = question_bank::get_qtype($question->qtype);
 		$question = $qtypeobj->save_question($question, $form);
-
+		
 		// set question to quiz
 		if (!$id) {
 			list($module, $cm) = get_module_from_cmid($cmid);
@@ -769,7 +772,7 @@ class MoodlesManager
 
 		// error check
 		if (! $course = $DB->get_record("course", array("id" => $quiz->course))) {
-			error("This course doesn't exist2");
+			error("This course doesn't exist");
 		}
 
 		// capability check
@@ -781,7 +784,7 @@ class MoodlesManager
 		}
 
 		if (! $course = $DB->get_record("course", array("id" => $cm->course))) {
-			error("This course doesn't exist:コースがありません。");
+			error("This course doesn't exist");
 		}
 
 		require_login($course); // needed to setup proper $COURSE
@@ -799,9 +802,10 @@ class MoodlesManager
 		foreach ($form as $k => $v) {
 			$json['params'][$k] = $v;
 		}
-		$topic = $DB->get_record('course_sections', array('id'=>$cm->section), '*');
-		$json['params']['coursesection'] = $topic->name ? $topic->name : $topic->section;
-		
+		$json['params']['cmid'] = $cm->id;
+		$json['params']['section'] = $cm->section;
+		$json['params']['visible'] = $cm->visible;
+
 		return $json['params'];
 	}
 

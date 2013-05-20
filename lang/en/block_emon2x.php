@@ -1,13 +1,13 @@
 <?PHP 
+$string['block_emon2x'] = "e-mon tsukuro version 2.x";
+
 $string['glexa'] = 'e-mon tsukuro version 2.x';
 $string['glexaedit'] = 'Create a e-mon tsukuro Quiz';
 $string['glexapath'] = 'Server Path';
 
-$string['emon'] = 'e-mon tsukuro version2.3.x';
-$string['emonedit'] = 'e-mon tsukuro version create a quiz';
-$string['emonpath'] = 'server path';
-
-$string['pluginname'] = "e-mon tsukuro version 2.3.x";
+$string['emon'] = 'e問つく朗2.x';
+$string['emonedit'] = 'e問つく朗クイズ作成';
+$string['emonpath'] = 'サーバー相対パス';
 
 $string['completesetting'] = 'Path has been Saved';
 $string['copyright'] = '&copy; 2013 Hiroshima Shudo University, VERSION2';
