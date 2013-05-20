@@ -220,7 +220,7 @@ function windowclose() {
 <script type="text/javascript">
 		$(window).unload(function(){
 			window.opener.location.reload(false);
-		});
+		}); 
 		
 		if (!$('textarea[name="intro"]').val()) {
 			$('textarea[name="intro"]').val('<p></p>');
