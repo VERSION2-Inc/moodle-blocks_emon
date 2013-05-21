@@ -1,0 +1,1 @@
+url=/api/ajax_upload.php&extension=&sizelimit=100000000
