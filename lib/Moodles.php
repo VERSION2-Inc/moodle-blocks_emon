@@ -804,6 +804,9 @@ class MoodlesManager
 		$json['params']['section'] = $cm->section;
 		$json['params']['visible'] = $cm->visible;
 
+    $section = $DB->get_record("course_sections", array("id" => $cm->section));
+    $json['params']['coursesection'] = $section->name ? $section->name : $section->section;
+
 		return $json['params'];
 	}
 
