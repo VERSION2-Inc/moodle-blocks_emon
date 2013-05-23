@@ -73,7 +73,7 @@ function windowclose() {
 								<?php } else { ?>
 								<select name="section">
 									<?php 
-									$sections = $this->getMoodleCourseSections($courseId);
+									$sections = $this->getMoodleCourseSections($this->g('course_id'));
 									foreach($sections as $key => $section){
 										echo "<option value='$key'>$section</option>";
 									}
