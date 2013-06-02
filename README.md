@@ -33,7 +33,9 @@ moodleの/blocksディレクトリ配下に emon ディレクトリをコピー�
 GitHub上のブランチ
 ------
 mdl_2.3 -> Moodle2.3用ブランチ
+
 mdl_2.4 -> Moodle2.4用ブランチ
+
 master -> Moodle2.5用ブランチ(開発中)
 
 一度git cloneでリポジトリをクローンし、git checkout mdl_2.3(ブランチ名) で切り替えて下さい。
