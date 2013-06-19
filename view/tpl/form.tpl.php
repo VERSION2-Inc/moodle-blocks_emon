@@ -231,7 +231,7 @@ function windowclose() {
 			mode : "exact",
 			elements: 'intro',
 			theme : "advanced",
-			content_css : "resources/css/glexa.css",
+			content_css : "resources/css/emon.css",
 			convert_urls : 0,
 			theme_advanced_buttons1 : "fontsizeselect,bold,italic,underline,forecolor,|,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,|,charmap,table,|,undo,redo,link,unlink,|,cleanup,iespell,fullscreen,code",
 			theme_advanced_buttons2 : "",

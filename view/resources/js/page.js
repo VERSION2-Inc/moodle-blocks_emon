@@ -377,6 +377,12 @@ function openQuestionForm(e, cmid, pageNumber, questionNumber) {
 		},
 		success : function(result) {
 			$('#create_layer').html(result);
+			// アップローダーのセット
+			var param = {};
+			param['cmid'] = $('#upload').attr('cmid');
+			param['qtype'] = $('#upload').attr('qtype');
+			param['itemid'] = $('#itemid').val();
+			uploader.putUploader('uploader', 'v2uploader', $('#upload').attr('session_name'), $('#upload').attr('session_id'), param, 'progress');
 		},
 		complete : function(result) {
 			if (useLoading) {
@@ -405,6 +411,7 @@ function closeQuestionForm() {
 
 // 問題形式を変更
 function changeQuestionType(cmid, pageNumber, qtype, questionNumber) {
+	console.log("load change Question");
 	moveQuestionForm();
 	$('#create_layer').html('Now loading...');
 	$.ajax({
@@ -417,6 +424,7 @@ function changeQuestionType(cmid, pageNumber, qtype, questionNumber) {
 			loading();
 		},
 		success : function(result) {
+			console.log("success send");
 			$('#create_layer').html(result);
 			// アップローダーのセット
 			var param = {};
@@ -428,6 +436,7 @@ function changeQuestionType(cmid, pageNumber, qtype, questionNumber) {
 					'progress');
 		},
 		complete : function(result) {
+			console.log("comp send");
 			loading(true);
 		}
 	});

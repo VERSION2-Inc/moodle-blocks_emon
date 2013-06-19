@@ -26,6 +26,7 @@
 				value="<?php $this->p('question_number') ?>" />
 			<?php } ?>
 
+
 			<?php if (!$this->g('modify') && !$this->g('create') && !$this->g('qtype')) { ?>
 			<?php etpl('click_question_type') ?>
 			<br />
