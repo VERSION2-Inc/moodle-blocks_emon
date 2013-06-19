@@ -56,13 +56,12 @@ if ($params['cmid']) {
 			$quiz['close_date'] = date('Y-m-d', $quiz['timeclose']);
 			$quiz['close_time'] = date('H:i:s', $quiz['timeclose']);
 		}
-
 		if (array_key_exists('reviewrightanswer',$quiz)) {
 			// 解答を表示する
 			if ($quiz['reviewrightanswer'] == 0x11110) {
-				$quiz['is_correct'] = 1;
+				$params['is_correct'] = 1;
 			} else if ($quiz['reviewrightanswer'] == 0x0000){
-				$quiz['is_correct'] = 0;
+				$params['is_correct'] = 0;
 			} else {
 				$quiz['is_moodle_review'] = true;
 			}
@@ -71,9 +70,9 @@ if ($params['cmid']) {
 		if (array_key_exists('reviewmarks',$quiz) && array_key_exists('reviewcorrectness',$quiz)) {
 			// 得点と正誤を表示する
 			if ($quiz['reviewmarks'] == 0x11110 && $quiz['reviewcorrectness'] == 0x11110) {
-				$quiz['is_point'] = 1;
+				$params['is_point'] = 1;
 			} else if ($quiz['reviewmarks'] == 0x00000 && $quiz['reviewcorrectness'] == 0x00000) {
-				$quiz['is_point'] = 0;
+				$params['is_point'] = 0;
 			} else {
 				$quiz['is_moodle_review'] = true;
 			}

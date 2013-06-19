@@ -30,7 +30,6 @@ $isCorrect = optional_param('is_correct', 0, PARAM_INT);
 $isPoint = optional_param('is_point', 0, PARAM_INT);
 $isMoodleReview = optional_param('is_moodle_review', 0, PARAM_INT);
 
-
 if ($openDate) {
 	$timeopen = strtotime($openDate . ' ' . $openTime);
 } else {
@@ -133,11 +132,14 @@ if (!$isMoodleReview) {
 	$quiz->correctnessimmediately = $isPoint ? 1 : null;
 	$quiz->correctnessduring = $isPoint ? 1 : null;
 	$quiz->correctnessclosed = $isPoint ? 1 : null;
+
+	error_log(print_r($quiz),true);
+	error_log($isPoint,true);
 }
 
 if ($cmid > 0) {
 	// 上書き
-	//$mod->instance = quiz_update_instance($quiz, $quiz);
+	$mod->instance = quiz_update_instance($quiz, $quiz);
 	set_coursemodule_visible($cmid, $visible);
 	rebuild_course_cache($course->id);
 
