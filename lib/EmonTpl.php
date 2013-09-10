@@ -4,7 +4,7 @@ $EmonTpl = new EmonTpl();
 // get_string overwrap function
 function etpl($string)
 {
-	echo get_string($string, 'block_emon2x');
+	echo get_string($string, 'block_emon');
 }
 function required()
 {
