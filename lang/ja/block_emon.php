@@ -1,5 +1,6 @@
 <?PHP 
 $string['block_emon2x'] = "e問つく郎2.x版";
+$string['block_emon'] = "e問つく郎2.x版";
 $string['pluginname'] = 'e問つく郎2.x版';
 
 $string['glexa'] = 'e問つく朗2.x';
