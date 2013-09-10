@@ -67,12 +67,12 @@
 	
 	// 問題タイプ
 	$types = array(
-		QUIZ_TYPE_CHOICE => get_string('choice', 'block_emon2x'),
-		QUIZ_TYPE_MULTICHOICE => get_string('multichoice', 'block_emon2x'),
-		QUIZ_TYPE_TEXT => get_string('input', 'block_emon2x'),
-		QUIZ_TYPE_FILL => get_string('cloze', 'block_emon2x'),
-		QUIZ_TYPE_TRUEFALSE => get_string('truefalse', 'block_emon2x'),
-		QUIZ_TYPE_MATCH => get_string('matching', 'block_emon2x'),
+		QUIZ_TYPE_CHOICE => get_string('choice', 'block_emon'),
+		QUIZ_TYPE_MULTICHOICE => get_string('multichoice', 'block_emon'),
+		QUIZ_TYPE_TEXT => get_string('input', 'block_emon'),
+		QUIZ_TYPE_FILL => get_string('cloze', 'block_emon'),
+		QUIZ_TYPE_TRUEFALSE => get_string('truefalse', 'block_emon'),
+		QUIZ_TYPE_MATCH => get_string('matching', 'block_emon'),
 	);
 	$params['types'] = $types;
 	$params['page_count'] = $params['page_number'];	
