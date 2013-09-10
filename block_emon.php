@@ -1,5 +1,5 @@
 <?PHP 
-class block_emon2x extends block_base {
+class block_emon extends block_base {
     function init() {
         $this->title = get_string('emon', 'block_emon2x');
         //2013年5月13日,03版リリース
