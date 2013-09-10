@@ -1,7 +1,7 @@
 <?PHP 
 class block_emon extends block_base {
     function init() {
-        $this->title = get_string('emon', 'block_emon2x');
+        $this->title = get_string('emon', 'block_emon');
         //2013年5月13日,03版リリース
         //TODO: リリース日に差し替えること。
         //(Moodle対象バージョン)(年)(月)(日)(リリース回)
@@ -29,12 +29,12 @@ class block_emon extends block_base {
 	    $url = $CFG->wwwroot . '/blocks/emon2x/';
 	    
         $this->content = new stdClass;
-        $this->content->footer = get_string('copyright', 'block_emon2x');
+        $this->content->footer = get_string('copyright', 'block_emon');
 		
         // capability check
 		if (has_capability('mod/quiz:manage', $context) || $COURSE->id == 1) {
 			$this->content->text = '<form id="glexaform" action="' . $url . 'view/form.php" method="get" target="emon2x" onsubmit="window.open(\'about:blank\', \'emon2x\', \'width=1020,height=720,resizable=yes,scrollbars=yes\')">' .
-					'<center><input type="submit" value="' . get_string('glexaedit', 'block_emon2x') . '" onclick="document.getElementById(\'glexacmid\')" value=""/></center>' .
+					'<center><input type="submit" value="' . get_string('glexaedit', 'block_emon') . '" onclick="document.getElementById(\'glexacmid\')" value=""/></center>' .
 					'<input type="hidden" name="course" value="' . $COURSE->id . '" />' .
 					'<input type="hidden" id="glexacmid" name="cmid" value="" />' .
 					'</form>';
@@ -67,7 +67,7 @@ class block_emon extends block_base {
 				'}' .
 				'' .
 				'</script>';
-			$this->content->text .= '<div style="text-align:center"><a href="' .$url.'docs/emon_teacher.pdf" target="_blank">' . get_string('glexa_manual', 'block_emon2x') . '</a></div>';
+			$this->content->text .= '<div style="text-align:center"><a href="' .$url.'docs/emon_teacher.pdf" target="_blank">' . get_string('glexa_manual', 'block_emon') . '</a></div>';
 		}
 		
         return $this->content;
