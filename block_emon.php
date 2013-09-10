@@ -33,7 +33,7 @@ class block_emon extends block_base {
 		
         // capability check
 		if (has_capability('mod/quiz:manage', $context) || $COURSE->id == 1) {
-			$this->content->text = '<form id="glexaform" action="' . $url . 'view/form.php" method="get" target="emon2x" onsubmit="window.open(\'about:blank\', \'emon2x\', \'width=1020,height=720,resizable=yes,scrollbars=yes\')">' .
+			$this->content->text = '<form id="glexaform" action="' . $url . 'view/form.php" method="get" target="emon" onsubmit="window.open(\'about:blank\', \'emon\', \'width=1020,height=720,resizable=yes,scrollbars=yes\')">' .
 					'<center><input type="submit" value="' . get_string('glexaedit', 'block_emon') . '" onclick="document.getElementById(\'glexacmid\')" value=""/></center>' .
 					'<input type="hidden" name="course" value="' . $COURSE->id . '" />' .
 					'<input type="hidden" id="glexacmid" name="cmid" value="" />' .
@@ -55,7 +55,7 @@ class block_emon extends block_base {
 				// リンク押下時のonclick
 				'  glink.onclick = function(_cmid) { ' .
 				'    return function() {' .
-				'      window.open("about:blank", "emon2x", "width=1020,height=720,resizable=yes,scrollbars=yes");' .
+				'      window.open("about:blank", "emon", "width=1020,height=720,resizable=yes,scrollbars=yes");' .
 				'      document.getElementById("glexacmid").value = _cmid;' .
 				'      document.getElementById("glexaform").submit();' .
 				'      return false;' .
