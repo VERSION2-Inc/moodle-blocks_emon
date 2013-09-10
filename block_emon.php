@@ -26,7 +26,7 @@ class block_emon extends block_base {
 	        print_error('nocontext');
 	    }
 	    
-	    $url = $CFG->wwwroot . '/blocks/emon2x/';
+	    $url = $CFG->wwwroot . '/blocks/emon/';
 	    
         $this->content = new stdClass;
         $this->content->footer = get_string('copyright', 'block_emon');
