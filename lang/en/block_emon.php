@@ -1,5 +1,6 @@
 <?PHP 
 $string['block_emon2x'] = "e-mon tsukuro version 2.x";
+$string['pluginname'] = 'e-mon tsukuro version 2.x';
 
 $string['glexa'] = 'e-mon tsukuro version 2.x';
 $string['glexaedit'] = 'Create a e-mon tsukuro Quiz';
