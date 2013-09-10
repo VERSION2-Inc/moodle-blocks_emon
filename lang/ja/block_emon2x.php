@@ -1,5 +1,6 @@
 <?PHP 
 $string['block_emon2x'] = "e問つく郎2.x版";
+$string['pluginname'] = 'e問つく郎2.x版';
 
 $string['glexa'] = 'e問つく朗2.x';
 $string['glexaedit'] = 'e問つく朗クイズ作成';
@@ -121,25 +122,4 @@ $string['csv_file_explain_body'] = '下記フォーマットのCSVファイル�
 $string['csv_finished'] = 'CSVのファイルからの一括登録が完了しました。';
 $string['csv_success'] = '成功した件数';
 $string['csv_errors'] = '失敗した行番号';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
-$string[''] = '';
 ?>
