@@ -17,7 +17,7 @@
 /**
  * emon tsukuro 2x block caps.
  *
- * @package    block_emon2x
+ * @package    block_emon
  * @copyright  Hiroshima Shudo Univ. & VERSION2 Inc. <info@ver2.jp>
  */
 
