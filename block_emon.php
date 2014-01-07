@@ -41,12 +41,12 @@ class block_emon extends block_base {
 			
 			$this->content->text .= '<script type="text/javascript">' .
 				// コース内のモジュールメニューにリンクを追加
-				'var classes = document.getElementsByTagName("a");' . 
+				'var classes = document.getElementsByTagName("li");' .
 				'for (var i=0; i < classes.length; i++) {' .
-				'  if (classes[i].className != "editing_assign") {continue;}' .
+			//	'  if (classes[i].className != "editing_assign") {continue;}' .
 				// <li>タグからモジュールIDを取得
-				'  var cmid = classes[i].parentNode.parentNode.parentNode.id.split("-")[1];' .
-				'  var className = classes[i].parentNode.parentNode.parentNode.className;' .
+				'  var cmid = classes[i].id.split("-")[1];' .
+				'  var className = classes[i].className;' .
 				// リンクタグ生成
 				'  if (className.indexOf("activity quiz") < 0) { continue; }' .
 				'  var glink = document.createElement("a");' .
@@ -60,10 +60,11 @@ class block_emon extends block_base {
 				'      document.getElementById("glexaform").submit();' .
 				'      return false;' .
 				'    }' .
-				'   } (cmid);' . 
+				'   } (cmid);' .
 				'  glink.appendChild(gstr);' .
-				// リンク追加 
-				'  classes[i].parentNode.appendChild(glink);' .
+				// リンク追加
+                '  var img = classes[i].getElementsByTagName("span");' .
+                '  img[2].appendChild(glink);' .
 				'}' .
 				'' .
 				'</script>';
