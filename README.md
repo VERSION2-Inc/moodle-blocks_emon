@@ -10,25 +10,45 @@ VERSION2社製のGlexaの一部のプログラムを抜き出し、moodleと連�
 
 ダウンロードは無料ですが，全ての環境での検証作業を終了しているわけではないので，若干動作しない環境があることをあらかじめご了承ください。
 
-動作条件
+This module is a development of the "問題野郎" project funded by Hiroshima Shudo University, that has since been made into its own project.
+
+It was created by packaging parts of code in Glexa (manufactured by VERSION2) as a Moodle plugin.
+
+Please note that there is a chance this module will not work on some Moodle environment. Also, this module is only available in Japanese. Stay tuned to future versions for other language supports.
+
+Download for free.
+
+
+動作条件 Requirements
 ------
 
 PHP5以上 (PHP5.2未満の場合、別途JSON拡張モジュールをインストールしてください。)
 ※ PHP5.3以上でtimezoneを設定していない場合、ワーニングが出る場合があります。
 
-インストール方法
+PHP5 or greater (For PHP 5.2 or less, you must also install the JSON extension)
+※For PHP5.3 or greater, PHP may display a warning if you have not set the timezone
+
+インストール方法 Installation
 ------
 moodleの/blocksディレクトリ配下に emon ディレクトリをコピーします。
 管理者でログイン後、通知メニューにアクセスするとインストールが完了します。
 
-使い方
+Copy the "emon" directory inside / blocks under your Moodle directory. 
+Installation will be completed after you login in as an administrator and access the notification menu.
+
+使い方 How to use
 ------
 任意のコースの編集モードで「e問つく朗」ブロックを追加してください。
 詳細な使い方はブロック追加後に表示されるPDFマニュアルをご覧ください。
 
-対象moodleバージョン
+In edit mode, add "e問つく朗" block to you course.
+Refer to the PDF manual displayed inside the block for details.
+
+対象moodleバージョン Targeted Moodle versions
 ------
 2.3,2.4を対象としています。
+
+2.3,2.4
 
 GitHub上のブランチ
 ------
@@ -40,7 +60,16 @@ master -> Moodle2.5用ブランチ(開発中)
 
 一度git cloneでリポジトリをクローンし、git checkout mdl_2.3(ブランチ名) で切り替えて下さい。
 
-注意事項
+mdl_2.3 -> Moodle2.3 branch 
+mdl_2.4 -> Moodle2.4 branch 
+master -> Moodle2.5 branch (under development) 
+First clone the repository with "git clone", then "git checkout mdl_2.3(branch name)" to switch branches.
+
+注意事項 Warning
 ------
 本ソフトウェアに起因するいかなる問題等について弊社は責任を負いません。予めご了承ください。
 本ソフトウェアのライセンスはmoodle上のライセンスに従います(GNU GPL v2)
+
+We are not responsible for any problem caused by this software. 
+This software follows the license policy of Moodle (GNU GPL v2)
+
