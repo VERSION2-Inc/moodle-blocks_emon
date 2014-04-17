@@ -84,8 +84,8 @@ class EmonTpl {
 		if (!($course = $DB->get_record('course', array('id' => $courseId), '*', MUST_EXIST)) ) {
 			error('Invalid course id');
 		}
-		preload_course_contexts($course->id);
-		if (!$context = get_context_instance(CONTEXT_COURSE, $course->id)) {
+		context_helper::preload_course($course->id);
+		if (!$context = context_course::instance($course->id)) {
 			error('nocontext');
 		}
 		require_login($course);
@@ -113,7 +113,7 @@ class EmonTpl {
 		ksort($jsonSections);
 		unset($jsonSections[0]);
 		
-		error_log(print_r($jsonSections,true));
+		//error_log(print_r($jsonSections,true));
 			
 		return $jsonSections;
 	}
