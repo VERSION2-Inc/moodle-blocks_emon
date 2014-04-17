@@ -22,7 +22,7 @@ class block_emon extends block_base {
             $this->content = '';
             return $this->content;
         }
-	    if (!$context = get_context_instance(CONTEXT_COURSE, $COURSE->id)) {
+	    if (!$context = context_course::instance($COURSE->id)) {
 	        print_error('nocontext');
 	    }
 	    

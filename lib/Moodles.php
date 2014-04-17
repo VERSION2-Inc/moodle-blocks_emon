@@ -788,7 +788,7 @@ class MoodlesManager
 		}
 
 		require_login($course); // needed to setup proper $COURSE
-		$context = get_context_instance(CONTEXT_MODULE, $cm->id);
+		$context = context_module::instance($cm->id);
 		require_capability('moodle/course:manageactivities', $context);
 
 		if (! $module = $DB->get_record("modules", array("id" => $cm->module))) {
@@ -850,7 +850,7 @@ class MoodlesManager
 		$prevContextId = null;
 		foreach ($categories as $category) {
 			if ($prevContextId != $category->contextid) {
-				$context = print_context_name(get_context_instance_by_id($category->contextid), true, true);
+				$context = context::instance_by_id($category->contextid)->get_context_name(true, true);
 			}
 			$json['categories'][$context][$category->id] = array($category->name, $category->contextid);
 			$prevContextId = $category->contextid;
@@ -869,6 +869,7 @@ class MoodlesManager
 
 		// library
 		include_once($CFG->dirroot . '/course/lib.php');
+        include_once($CFG->dirroot . '/lib/coursecatlib.php');
 
 		// action
 		$fields = array(
@@ -876,18 +877,22 @@ class MoodlesManager
 				'shortname', 'fullname', 'idnumber',
 		);
 
-		if ((has_capability('moodle/site:config', get_context_instance(CONTEXT_SYSTEM)))) {
+		if (has_capability('moodle/site:config', context_system::instance())) {
 			// 管理者
-			$categories = get_child_categories(0);  // Parent = 0   ie top-level categories only
+			$categories = coursecat::get(0)->get_children();  // Parent = 0   ie top-level categories only
 			if (is_array($categories) && count($categories) == 1) {
+                /* @var $category coursecat */
 				$category   = array_shift($categories);
-				$courses    = get_courses_wmanagers($category->id,
-						'fullname ASC, c.sortorder ASC',
-						array());
+				$courses    = $category->get_courses(array(
+                    'coursecontacts' => true,
+                    'sort' => array('fullname' => 1, 'sortorder' => 1)
+                    ));
 			} else {
-				$courses    = get_courses_wmanagers('all',
-						'fullname ASC, c.sortorder ASC',
-						array());
+				$courses    = coursecat::get(0)->get_courses(array(
+                    'recursive' => true,
+                    'coursecontacts' => true,
+                    'sort' => array('fullname' => 1, 'sortorder' => 1)
+                    ));
 			}
 			unset($categories);
 		} else {
@@ -902,7 +907,7 @@ class MoodlesManager
 				continue;
 			}
 			// 管理権限チェック
-			$context = get_context_instance(CONTEXT_COURSE, $course->id);
+			$context = context_course::instance($course->id);
 
 			if (has_capability('moodle/course:manageactivities', $context)) {
 				$json['courses'][$course->id] = $course->fullname; // format_string($course->fullname));

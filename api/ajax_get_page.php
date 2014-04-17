@@ -46,7 +46,7 @@
 	);
 	if (is_array($questions)) {
 		// ファイル表示用コンテキスト
-		$context = get_context_instance(CONTEXT_MODULE, $cmid);
+		$context = context_module::instance($cmid);
 		foreach ($questions as $number => &$q) {
 			// ドラフト処理
     		$draftid = file_get_submitted_draft_itemid('questiontext');
