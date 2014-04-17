@@ -68,9 +68,10 @@ if (! $course = $DB->get_record('course', array('id' => $cm->course))) {
 	error("This course doesn't exist");
 }
 
-require_login($course);
-$context = get_context_instance(CONTEXT_COURSE, $course->id);
-require_capability('moodle/course:manageactivities', $context);
+require_login();
+$context = context_course::instance($course->id);
+
+has_capability('moodle/course:manageactivities', $context);
 
 if (! $module = $DB->get_record("modules", array("name" => "quiz"))) {
 	error("This module type doesn't exist");

@@ -39,7 +39,7 @@ if ($params['action'] == 'save') {
 	} else {
 		$quiz = new StdClass();
 	}
-	require_once dirname(__FILE__).'/../api/set_quiz.php';
+	require_once dirname(__FILE__).'/api/set_quiz.php';
 	header('Location: page.php?cmid='.$cm->id);
 }
 

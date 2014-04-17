@@ -12,15 +12,11 @@
 	 
 	// required library
     require_once("../../../config.php");
-	
-	// login check
-	if (!DEBUG && !isloggedin()) {
-		error('You must be login.');
-		exit;
-	}
+
+    require_login();
 	
 	// parameters
-	$action = required_param('action', PARAM_CLEAN);
+	$action = required_param('action', PARAM_TEXT);
 	
 	// common variables
 	$json  = array();
