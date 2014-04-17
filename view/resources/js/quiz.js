@@ -62,7 +62,7 @@ function setMoodleSections(result) {
 function setMediaFile(filename) {
 	$('#progress').html('');
 	$('#media_files').html('ファイル: <b>' + filename + '</b><br />');
-	$('#question_files').val($('#question_files').val() + filename + '¥n');
+	$('#question_files').val($('#question_files').val() + filename + '\n');
 }
 
 /**
@@ -202,6 +202,22 @@ Uploader.prototype = {
 	 *            array
 	 */
 	putUploader : function(destid, id, sesskey, sessid, array, progressid) {
+		var $iframe = $('<iframe scrolling="no" frameborder="0" width="240" height="30" />');
+		$('#view_uploader').html($iframe);
+		var $ibody = $iframe.contents().find('body');
+		$ibody.css('margin', 0).css('padding', 0);
+		$ibody.append([
+			'<form action="api/ajax_upload.php" method="post" enctype="multipart/form-data">',
+			'<input type="hidden" name="itemid" value="' + $('#itemid').val() + '" />',
+			'<input type="file" name="Filedata" onchange="this.form.submit();" />',
+			'</form>'
+			].join(''));
+		$iframe.width($ibody.width()).height($ibody.height());
+		window.block_emon_upload_addfile = function (filename) {
+			$('#question_files').val($('#question_files').val() + "\n" + filename);
+		}
+		
+return;
 		var param = '';
 		var html = '';
 		var count = 1;

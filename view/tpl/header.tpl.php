@@ -21,7 +21,7 @@
 <script type="text/javascript" src="resources/js/lib/cvi_busy_lib.js"></script>
 <script type="text/javascript" src="resources/js/lib/jkl-calendar.js"></script>
 <script type="text/javascript" src="resources/js/tiny_mce/tiny_mce.js"></script>
-<script type="text/javascript" src="resources/js/quiz.js"></script>
+<script type="text/javascript" src="resources/js/quiz.js?<?= time(); ?>"></script>
 <script type="text/javascript" src="resources/js/page.js"></script>
 <script type="text/javascript" src="resources/js/type_choice.js"></script>
 <script type="text/javascript" src="resources/js/type_multichoice.js"></script>

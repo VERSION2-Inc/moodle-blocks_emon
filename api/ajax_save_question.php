@@ -43,7 +43,7 @@
 	// ファイル
 	$questionFile = '';
 	if ($params['question_files']) {
-		$files = explode("¥n", $params['question_files']);
+		$files = explode("\n", $params['question_files']);
 		$context = context_user::instance($USER->id);
 		foreach ($files as $f) {
 			if (strlen(trim($f))) {
