@@ -61,7 +61,7 @@ function setMoodleSections(result) {
 // 問題作成時のファイル一覧
 function setMediaFile(filename) {
 	$('#progress').html('');
-	$('#media_files').html('ファイル: <b>' + filename + '</b><br />');
+	$('#media_files').html($('#media_files').html() + 'ファイル: <b>' + filename + '</b><br />');
 	$('#question_files').val($('#question_files').val() + filename + '\n');
 }
 
@@ -202,22 +202,21 @@ Uploader.prototype = {
 	 *            array
 	 */
 	putUploader : function(destid, id, sesskey, sessid, array, progressid) {
-		var $iframe = $('<iframe scrolling="no" frameborder="0" width="240" height="30" />');
+		var $iframe = $('<iframe scrolling="no" frameborder="0" width="240" height="30" />').load(function () {
+			var $ibody = $iframe.contents().find('body').css('margin', 0).css('padding', 0);
+			if ($ibody.find('form').length == 0) {
+				$ibody.append([
+					'<form action="api/ajax_upload.php" method="post" enctype="multipart/form-data">',
+					'<input type="hidden" name="itemid" value="' + $('#itemid').val() + '" />',
+					'<input type="file" name="Filedata" onchange="this.form.submit();" />',
+					'</form>'
+					].join(''));
+			}
+			$iframe.width($ibody.width()).height($ibody.height());
+		});
 		$('#view_uploader').html($iframe);
-		var $ibody = $iframe.contents().find('body');
-		$ibody.css('margin', 0).css('padding', 0);
-		$ibody.append([
-			'<form action="api/ajax_upload.php" method="post" enctype="multipart/form-data">',
-			'<input type="hidden" name="itemid" value="' + $('#itemid').val() + '" />',
-			'<input type="file" name="Filedata" onchange="this.form.submit();" />',
-			'</form>'
-			].join(''));
-		$iframe.width($ibody.width()).height($ibody.height());
-		window.block_emon_upload_addfile = function (filename) {
-			$('#question_files').val($('#question_files').val() + "\n" + filename);
-		}
+		return; // GOOD BY FLASH!
 		
-return;
 		var param = '';
 		var html = '';
 		var count = 1;
