@@ -285,13 +285,13 @@ function sendQuestionForm(obj) {
 		// tinyMCEからテキスト抽出
 		if (tinyMCE && $('#questiontext').length) {
 			if (tinyMCE.get('questiontext')) {
-				tinyMCE.get('questiontext').hide();
+				//tinyMCE.get('questiontext').hide();
 				$('#questiontext').css('display', 'none');
 			}
 		}
 		if (tinyMCE) {
 			if (tinyMCE.get('filltext')) {
-				tinyMCE.get('filltext').hide();
+				//tinyMCE.get('filltext').hide();
 				$('#filltext').css('display', 'none');
 			}
 		}
@@ -398,6 +398,8 @@ function closeQuestionMenu() {
 }
 
 function closeQuestionForm() {
+	window.parent.location.reload();
+	return;
 	$('#create_layer').css('display', 'none');
 	$('#create_layer').html('');
 	getMoodlePageForEdit(window.cmid, window.pageNumber);
@@ -423,8 +425,8 @@ function changeQuestionType(cmid, pageNumber, qtype, questionNumber) {
 			param['cmid'] = $('#upload').attr('cmid');
 			param['qtype'] = $('#upload').attr('qtype');
 			param['itemid'] = $('#itemid').val();
-			uploader.putUploader('uploader', 'v2uploader', $('#upload').attr(
-					'session_name'), $('#upload').attr('session_id'), param,
+			uploader.putUploader('uploader', 'v2uploader', $('#uploader').attr(
+					'session_name'), $('#uploader').attr('session_id'), param,
 					'progress');
 		},
 		complete : function(result) {
