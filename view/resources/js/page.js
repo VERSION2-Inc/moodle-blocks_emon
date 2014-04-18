@@ -285,13 +285,13 @@ function sendQuestionForm(obj) {
 		// tinyMCEからテキスト抽出
 		if (tinyMCE && $('#questiontext').length) {
 			if (tinyMCE.get('questiontext')) {
-				//tinyMCE.get('questiontext').hide();
+				tinyMCE.get('questiontext').hide();
 				$('#questiontext').css('display', 'none');
 			}
 		}
 		if (tinyMCE) {
 			if (tinyMCE.get('filltext')) {
-				//tinyMCE.get('filltext').hide();
+				tinyMCE.get('filltext').hide();
 				$('#filltext').css('display', 'none');
 			}
 		}
