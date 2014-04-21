@@ -377,6 +377,7 @@ function openQuestionForm(e, cmid, pageNumber, questionNumber) {
 		},
 		success : function(result) {
 			$('#create_layer').html(result);
+			uploader.putUploader();
 		},
 		complete : function(result) {
 			if (useLoading) {
