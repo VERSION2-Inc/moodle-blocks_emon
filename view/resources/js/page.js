@@ -459,13 +459,14 @@ function removeQuestion(cmid, pageNumber) {
 			data : 'cmid=' + window.cmid + '&page_number=' + window.pageNumber
 					+ '&questionid=' + window.questionId,
 			beforeSend : function(XMLHttpRequest) {
-				loading();
+				//loading();
 			},
 			success : function(result) {
-				getMoodlePageForEdit(cmid, pageNumber);
+				//getMoodlePageForEdit(cmid, pageNumber);
+				window.parent.location.reload();
 			},
 			complete : function(result) {
-				loading(true);
+				//loading(true);
 			}
 		});
 	}
