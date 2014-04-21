@@ -468,7 +468,10 @@ class MoodlesManager
 				foreach ($question->answer as $k => $v) {
 					$question->fraction[$k] = ($correct === $k) ? 1 : 0;
 					if (!$id) {
-						$question->feedback[$k] = '';
+						$question->feedback[$k] = array(
+								'text' => '',
+								'format' => 1,
+						);
 					} else {
 						$question->feedback[$k] = array(
 								'text' => isset($feedbacks[$k]) ? $feedbacks[$k] : '',
@@ -486,7 +489,7 @@ class MoodlesManager
 		}
 
 		// multichoice(multi)
-		else if ($question->qtype == 'multichoice' && (!isset($question->single) || $question->single == 0)) {
+		else if ($question->qtype == 'multichoice' && empty($question->single)) {
 			$question->single = 0;
 			if (is_array($post['answer'])) {
 				foreach ($post['answer'] as $k => $a) {
@@ -561,7 +564,10 @@ class MoodlesManager
 
 			foreach ($question->answer as $k => $v) {
 				$question->fraction[$k] = 1;
-				$question->feedback[$k] = '';
+				$question->feedback[$k] = array(
+					'text' => '',
+					'format' => 1,
+				);
 			}
 			$question->usecase = $post['usecase'];
 		}
@@ -569,12 +575,18 @@ class MoodlesManager
 		// multianswer
 		else if ($question->qtype == 'multianswer') {
 			$questions = $post['questions'];
+			$question->options = new stdClass;
+			$question->options->questions = array();
 			foreach ($questions as $k => $q) {
-				$question->options->questions[$k]->qtype = $q['qtype'];
-				$question->options->questions[$k]->questiontext = $q['questiontext'];
-				foreach ($q['answer'] as $kk => $a) {
+				$question->options->questions[$k] = new stdClass;
+				$question->options->questions[$k]->qtype = $post['qtype'];
+				$question->options->questions[$k]->questiontext = $post['questiontext'];
+				$question->options->questions[$k]->answers = array();
+				$question->options->questions[$k]->fraction = array();
+				$question->options->questions[$k]->feedback = array();
+				foreach ($post['option']['answers'] as $kk => $a) {
 					$question->options->questions[$k]->answers[$kk] = $a;
-					if ($q['qtype'] == 'multichoice') {
+					if ($post['qtype'] == 'multichoice') {
 						if ($k == $q['correct']) {
 							$question->options->questions[$k]->fraction[$k] = 1;
 						}
@@ -657,15 +669,15 @@ class MoodlesManager
 			);
 		} else {
 			$question->correctfeedback = array(
-					'text' => $question->options->correctfeedback,
+					'text' => @$question->options->correctfeedback,
 					'format' => 1
 			);
 			$question->partiallycorrectfeedback = array(
-					'text' => $question->options->partiallycorrectfeedback,
+					'text' => @$question->options->partiallycorrectfeedback,
 					'format' => 1
 			);
 			$question->incorrectfeedback = array(
-					'text' => $question->options->incorrectfeedback,
+					'text' => @$question->options->incorrectfeedback,
 					'format' => 1
 			);
 		}
