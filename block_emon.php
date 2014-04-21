@@ -63,8 +63,15 @@ class block_emon extends block_base {
 				'   } (cmid);' .
 				'  glink.appendChild(gstr);' .
 				// リンク追加
-                '  var img = classes[i].getElementsByTagName("span");' .
-                '  img[2].appendChild(glink);' .
+				'  var divs = classes[i].getElementsByTagName("div");' .
+				'  for (var k = 0; k < divs.length; k++) {' .
+				'    if (divs[k].className.indexOf("activityinstance") >= 0) {' .
+				'      divs[k].appendChild(glink);' .
+				'      if (divs[k].getElementsByTagName("a")[0].className.indexOf("dimmed") >= 0)' .
+				'        glink.className = "dimmed";' .
+				'      break;' .
+				'    }' .
+				'  }' .
 				'}' .
 				'' .
 				'</script>';
