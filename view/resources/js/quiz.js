@@ -50,10 +50,9 @@ function getMoodleCourseOptions(courseid) {
  */
 function setMoodleSections(result) {
 	$('select[name="section"]').children().remove();
-	var count = 1;
-	for ( var i in result) {
+	for (var number in result.sections) {
 		$('select[name="section"]').append(
-				$('<option value="' + count + '">' + (count++) + '</option>'));
+				$('<option value="' + number + '">' + number + '</option>'));
 	}
 	$('select[name="section"]').attr('enabled', '');
 }

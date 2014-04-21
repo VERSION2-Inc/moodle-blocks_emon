@@ -28,7 +28,9 @@
     $sections = get_fast_modinfo($course)->get_section_info_all();
     
     foreach ($sections as $number => $section) {
-    	$json['sections'][$number] = $section->id;
+    	$json['sections'][$section->section] = $section->id;
     }
+    ksort($json['sections']);
+    unset($json['sections'][0]);
 	return $json;
 ?>
