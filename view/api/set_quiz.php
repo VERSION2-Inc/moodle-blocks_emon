@@ -101,17 +101,17 @@ $quiz->quizpassword = $password;
 
 $quiz->specificfeedbackopen = 1;
 $quiz->specificfeedbackimmediately = 1;
-$quiz->specificfeedbackduring = 1;
+$quiz->specificfeedbackduring = null;
 $quiz->specificfeedbackclosed = 1;
 
 $quiz->generalfeedbackopen = 1;
 $quiz->generalfeedbackimmediately = 1;
-$quiz->generalfeedbackduring = 1;
+$quiz->generalfeedbackduring = null;
 $quiz->generalfeedbackclosed = 1;
 
 $quiz->overallfeedbackopen = 1;
 $quiz->overallfeedbackimmediately = 1;
-$quiz->overallfeedbackduring = 1;
+$quiz->overallfeedbackduring = null;
 $quiz->overallfeedbackclosed = 1;
 
 $quiz->attemptopen = 1;
@@ -122,17 +122,17 @@ $quiz->attemptclosed = 1;
 if (!$isMoodleReview) {
 	$quiz->rightansweropen = $isCorrect ? 1 : null;
 	$quiz->rightanswerimmediately = $isCorrect ? 1 : null;
-	$quiz->rightanswerduring = $isCorrect ? 1 : null;
+	$quiz->rightanswerduring = null;
 	$quiz->rightanswerclosed = $isCorrect ? 1 : null;
 
 	$quiz->marksopen = $isPoint ? 1 : null;
 	$quiz->marksimmediately = $isPoint ? 1 : null;
-	$quiz->marksduring = $isPoint ? 1 : null;
+	$quiz->marksduring = null;
 	$quiz->marksclosed = $isPoint ? 1 : null;
 
 	$quiz->correctnessopen = $isPoint ? 1 : null;
 	$quiz->correctnessimmediately = $isPoint ? 1 : null;
-	$quiz->correctnessduring = $isPoint ? 1 : null;
+	$quiz->correctnessduring = null;
 	$quiz->correctnessclosed = $isPoint ? 1 : null;
 }
 
