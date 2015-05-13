@@ -14,7 +14,7 @@
 	}
 	error_reporting(E_ALL);
 	ini_set('display_errors',1);
-	
+
 	// parameters
 	$params['cmid'] = required_param('cmid', PARAM_INT);
 	$params['page_number'] = required_param('page_number', PARAM_INT);
@@ -39,7 +39,7 @@
     if ($params['copy'] != '') {
 		$params['questionid'] = null;
 	}
-	
+
 	// ファイル
 	$questionFile = '';
 	if ($params['question_files']) {
@@ -61,7 +61,7 @@
 		}
 		$params['questiontext'] = $questionFile . $params['questiontext'];
 	}
-	
+
 	$moodles->setQuestion($params);
 	
 	// ページ表示

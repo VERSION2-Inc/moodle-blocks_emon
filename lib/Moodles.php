@@ -102,8 +102,16 @@ class MoodlesManager
 	function setPageOrders($cmid, $pages)
 	{
 		global $CFG, $DB;
-		require_once($CFG->dirroot.'/mod/quiz/editlib.php');
-			
+
+        // Edit by Minh
+        if ($CFG->branch < 28)
+        {
+            require_once($CFG->dirroot.'/mod/quiz/editlib.php');
+        } else {
+            require_once($CFG->dirroot . '/question/editlib.php');
+        }
+		// End
+
 		// 配列の設定
 		$overwritePages = array();
 		if (is_array($pages)) {
@@ -133,9 +141,13 @@ class MoodlesManager
 		while (strpos($quiz->questions, ',0,0')) {
 			$quiz->questions = str_replace(',0,0', ',0', $quiz->questions);
 		}
-		if (!$DB->set_field('quiz', 'questions', $quiz->questions, array('id' => $quiz->id))) {
-			error('Could not save question list');
-		}
+
+        if ($CFG->branch < 27)
+        {
+            if (!$DB->set_field('quiz', 'questions', $quiz->questions, array('id' => $quiz->id))) {
+                error('Could not save question list');
+            }
+        }
 			
 		// preview delete
 		$previewattempts = $DB->get_records_select('quiz_attempts', 'quiz = ? AND preview = 1', array($quiz->id));
@@ -157,17 +169,71 @@ class MoodlesManager
 	function removeMoodleQuestion($cmid, $questionId, $sesskey)
 	{
 		global $CFG, $DB;
-		require_once($CFG->dirroot.'/mod/quiz/editlib.php');
-			
-		list($thispageurl, $contexts, $cmid, $cm, $quiz, $pagevars) = question_edit_setup('editq', true);
 
-		if (confirm_sesskey($sesskey)) {
-			if (!quiz_remove_question($quiz, $questionId)) {
-				return false;
-			}
-		} else {
-			return false;
-		}
+        // Edit by Minh
+        if ($CFG->branch < 28)
+        {
+            require_once($CFG->dirroot.'/mod/quiz/editlib.php');
+        } else {
+            require_once($CFG->dirroot . '/mod/quiz/locallib.php');
+        }
+        // End
+
+        list($thispageurl, $contexts, $cmid, $cm, $quiz, $pagevars) = question_edit_setup('editq', true);
+
+        if (confirm_sesskey($sesskey)) {
+
+            // Edit by Minh
+            if ($CFG->branch < 27)
+            {
+                if (!quiz_remove_question($quiz, $questionId)) {
+                    return false;
+                }
+            } elseif ($CFG->branch < 28) {
+                $sql = '
+                        SELECT slot FROM {quiz_slots}
+                        WHERE quizid = :quizid AND questionid = :questionid
+                ';
+
+                $params = array(
+                    'quizid' => $quiz->id,
+                    'questionid' => $questionId,
+                );
+
+                $slotNumber = $DB->get_field_sql($sql, $params);
+
+                if (!quiz_remove_slot($quiz, $slotNumber)) {
+                    return false;
+                }
+            } else {
+                $cm = get_coursemodule_from_instance('quiz', $quiz->id, $quiz->course);
+                $course = $DB->get_record('course', array('id' => $quiz->course), '*', MUST_EXIST);
+                require_login($course, false, $cm);
+
+                $quizobj = new quiz($quiz, $cm, $course);
+                $structure = $quizobj->get_structure();
+
+                $sql = '
+                        SELECT slot FROM {quiz_slots}
+                        WHERE quizid = :quizid AND questionid = :questionid
+                ';
+
+                $params = array(
+                    'quizid' => $quiz->id,
+                    'questionid' => $questionId,
+                );
+
+                $slotNumber = $DB->get_field_sql($sql, $params);
+
+                if (!$structure->remove_slot($quiz, $slotNumber))
+                {
+                    return false;
+                }
+            }
+            // End
+        } else {
+            return false;
+        }
 
 		// preview delete
 		$previewattempts = get_records_select('quiz_attempts',
@@ -216,7 +282,13 @@ class MoodlesManager
 		global $CFG, $DB;
 
 		// library
-		require_once($CFG->dirroot.'/mod/quiz/editlib.php');
+        // Edit by Minh
+        if ($CFG->branch < 28)
+        {
+            require_once($CFG->dirroot.'/mod/quiz/editlib.php');
+        }
+		// End
+
 		require_once($CFG->dirroot.'/question/editlib.php');
 
 		// get question categories
@@ -312,7 +384,14 @@ class MoodlesManager
 		$questions = array();
 
 		// library
-		require_once($CFG->dirroot . '/mod/quiz/editlib.php');
+        // Edit by Minh
+        if ($CFG->branch < 28)
+        {
+            require_once($CFG->dirroot . '/mod/quiz/editlib.php');
+        } else {
+            require_once($CFG->dirroot . '/question/editlib.php');
+        }
+		// End
 
 		// parameters
 		$cmid = required_param('cmid', PARAM_INT);
@@ -347,7 +426,14 @@ class MoodlesManager
 		$questions = array();
 
 		// library
-		require_once($CFG->dirroot . '/mod/quiz/editlib.php');
+        // Edit by Minh
+        if ($CFG->branch < 28)
+        {
+            require_once($CFG->dirroot . '/mod/quiz/editlib.php');
+        } else {
+            require_once($CFG->dirroot . '/question/editlib.php');
+        }
+        // End
 
 		// parameters
 		list($thispageurl, $contexts, $cmid, $cm, $quiz, $pagevars) = question_edit_setup('editq', true);
@@ -362,7 +448,12 @@ class MoodlesManager
 
 		// get question categories
 		$contexts = $contexts->having_one_edit_tab_cap('editq');
-		$questions = explode(',', $quiz->questions);
+        if ($CFG->branch < 27)
+        {
+            $questions = explode(',', $quiz->questions);
+        } else {
+            $questions = $this->get_questions_new($quiz->id);
+        }
 
 		$pageNumber = 1;
 		$pages = array();
@@ -395,7 +486,16 @@ class MoodlesManager
 
 		// library
 		require_once($CFG->dirroot.'/question/editlib.php');
-		require_once($CFG->dirroot.'/mod/quiz/editlib.php');
+
+        // Edit by Minh
+		if ($CFG->branch < 28)
+        {
+            require_once($CFG->dirroot.'/mod/quiz/editlib.php');
+        } else {
+            require_once($CFG->dirroot.'/mod/quiz/locallib.php');
+        }
+        // End
+
 		require_once($CFG->libdir.'/filelib.php');
 			
 		// parameters
@@ -779,7 +879,15 @@ class MoodlesManager
 		global $CFG, $DB;
 
 		// library
-		require_once($CFG->dirroot.'/mod/quiz/editlib.php');
+        // Edit by Minh
+        if ($CFG->branch < 28)
+        {
+            require_once($CFG->dirroot . '/mod/quiz/editlib.php');
+        } else {
+            require_once($CFG->dirroot . '/question/editlib.php');
+        }
+		// End
+
 		list($thispageurl, $contexts, $cmid, $cm, $quiz, $pagevars) = question_edit_setup('editq', true);
 
 		// error check
@@ -833,7 +941,14 @@ class MoodlesManager
 		global $CFG, $DB;
 
 		// library
-		require_once($CFG->dirroot.'/mod/quiz/editlib.php');
+        // Edit by Minh
+        if ($CFG->branch < 28)
+        {
+            require_once($CFG->dirroot . '/mod/quiz/editlib.php');
+        } else {
+            require_once($CFG->dirroot . '/question/editlib.php');
+        }
+        // End
 
 		// parameters
 		list($thispageurl, $contexts, $cmid, $cm, $quiz, $pagevars) = question_edit_setup('editq', true);
@@ -984,5 +1099,21 @@ class MoodlesManager
 		}
 		return empty($_line) ? false : $_csv_data;
 	}
+
+    function get_questions_new($quizid)
+    {
+        global $DB;
+
+        $sql = '
+                SELECT qs.questionid FROM {quiz_slots} qs
+                WHERE qs.quizid = :quizid
+        ';
+
+        $params = array(
+            'quizid' => $quizid,
+        );
+
+        return $DB->get_fieldset_sql($sql, $params);
+    }
 
 }
