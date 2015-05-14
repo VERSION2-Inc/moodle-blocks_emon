@@ -30,7 +30,8 @@ PHP5 or greater (For PHP 5.2 or less, you must also install the JSON extension)
 
 インストール方法 Installation
 ------
-moodleの/blocksディレクトリ配下に emon ディレクトリをコピーします。
+moodleの/blocksディレクトリ配下に emon ディレクトリを作成し、プログラムをディレクトリ直下にコピーします。
+（2.3および2.4はディレクトリ名を emon2x という名称にしてください）
 管理者でログイン後、通知メニューにアクセスするとインストールが完了します。
 
 Copy the "emon" directory inside /blocks under your Moodle directory. 
